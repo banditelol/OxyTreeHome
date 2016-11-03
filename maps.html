@@ -1,0 +1,139 @@
+<!-- AIzaSyDLFcEIoaS2K1rrLFItxkCNR0ElabGkkws -->
+<html>
+    <head>
+        <title>Bootstrap & Google maps Tutorial by Bootstrapious.com</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <style type="text/css" media="screen">
+          #map{
+            width: 100%;
+            height: 400px;
+          }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 col-lg-offset-2">
+
+                    <h1>Google maps & Bootstrap tutorial from <a href="http://bootstrapious.com">Bootstrapious.com</a></h1>
+
+                    <p class="lead">This is a demo for our tutorial showing you how to add a custom styled Google maps into a Bootstrap page.</p>
+
+                    <p><strong>Pellentesque habitant morbi tristique</strong>  amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+                    
+                </div>
+
+            </div> 
+
+        </div> 
+        
+        <div id="map"></div>
+        <script>
+        var infowindow
+            function initMap() {
+              var bandung = {lat: -6.891954, lng: 107.609887};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: bandung
+        });
+
+        var contentString = '<div id="content">'+'<div id="siteNotice">'+'<div id="gauge_div">'+'<table style=" ">'+'<tr>'+'<td>'+'Temperature   '+ 'C ' +'</td>'+'<td>'+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
+
+        infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+          position: bandung,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+
+        marker.addListener('click', function(){
+          infowindow.open(map,marker);
+          initChart();
+
+        });
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLFcEIoaS2K1rrLFItxkCNR0ElabGkkws&callback=initMap"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+        <script type='text/javascript'>
+          //google.charts.load('current', {'packages':['table']});
+          //google.charts.setOnLoadCallback(initChart);
+          // set your channel id here
+          var channel_id = 170460;
+          // set your channel's read api key here if necessary
+          var api_key = 'NM5B4INAV3GKQ877';
+          // maximum value for the gauge
+          var max_gauge_value = 200;
+          // name of the gauge
+          var gauge_name = 'Computer Temperature';
+
+          // global variables
+          var chart, charts, data, dataPoint;
+
+          // load the google gauge visualization
+          google.load('visualization', '1', {packages:['gauge']});
+          google.setOnLoadCallback(initChart);
+
+          // display the data
+          function displayData(point) {
+            data.setValue(0, 0, gauge_name);
+            data.setValue(0, 1, point);
+            chart.draw(data, options);
+          }
+
+          // load the data
+          function loadData() {
+            // variable for the data point
+            var p;
+
+            // get the data from thingspeak
+            $.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/feed/last.json?api_key=' + api_key, function(data) {
+
+              // get the data point
+              
+              p = data.field1;
+              console.log('temperature data = '+p + 'C');
+              
+              // if there is a data point display it
+              // if (p) {
+              //   p = Math.round((p / max_gauge_value) * 100);
+              //   displayData(p);
+              // }
+              var contentString = '<div id="content">'+'<div id="siteNotice">' +'<table style=" ">'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Culture\'s pH   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'O2   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
+              infowindow.setContent(contentString);
+            });
+          }
+
+          // initialize the chart
+          function initChart() {
+
+            // data = new google.visualization.DataTable();
+            // data.addColumn('string', 'Label');+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'
+            // data.addColumn('number', 'Value');
+            // data.addRows(1);
+
+            // chart = new google.visualization.Gauge(document.getElementById('gauge_div'));
+            // options = {width: 120, height: 120, redFrom: 90, redTo: 100, yellowFrom:75, yellowTo: 90, minorTicks: 5};
+
+            loadData();
+
+            // load new data every 5 seconds
+            setInterval('loadData()', 5000);
+          }
+
+        </script>
+    </body>
+</html>
