@@ -72,9 +72,9 @@
           //google.charts.load('current', {'packages':['table']});
           //google.charts.setOnLoadCallback(initChart);
           // set your channel id here
-          var channel_id = 170460;
+          var channel_id = 181048;
           // set your channel's read api key here if necessary
-          var api_key = 'NM5B4INAV3GKQ877';
+          var api_key = '67ZCF1NLTR43AFYM';
           // maximum value for the gauge
           var max_gauge_value = 200;
           // name of the gauge
@@ -97,22 +97,28 @@
           // load the data
           function loadData() {
             // variable for the data point
-            var p;
+            var pco2, pco, ptemp, pph;
 
             // get the data from thingspeak
             $.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/feed/last.json?api_key=' + api_key, function(data) {
 
               // get the data point
               
-              p = data.field1;
-              console.log('temperature data = '+p + 'C');
+              pco2 = data.field1;
+              pco = data.field2;
+              ptemp = data.field3;
+              pph = data.field4;
+              console.log('CO2 data = '+pco2 + '\%');
+              console.log('CO data = '+pco + '\%');
+              console.log('temperature data = '+ptemp + 'C');
+              console.log('pH data = '+pph);
               
               // if there is a data point display it
               // if (p) {
               //   p = Math.round((p / max_gauge_value) * 100);
               //   displayData(p);
               // }
-              var contentString = '<div id="content">'+'<div id="siteNotice">' +'<table style=" ">'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Culture\'s pH   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'<tr>'+'<td>'+'O2   '+'</td>'+'<td>'+ String(p)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
+              var contentString = '<div id="content">'+'<div id="siteNotice">' +'<table style=" ">'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+ String(pco2)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ String(pco)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(ptemp)+'</td>'+'</tr>'+'<tr>'+'<td>'+'pH   '+'</td>'+'<td>'+ String(pph)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
               infowindow.setContent(contentString);
             });
           }
@@ -131,7 +137,7 @@
             loadData();
 
             // load new data every 5 seconds
-            setInterval('loadData()', 5000);
+            setInterval('loadData()', 1000);
           }
 
         </script>
