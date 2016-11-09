@@ -165,11 +165,11 @@ hr.small {
 /* About */
 
 .about {
-    padding: 50px 0;
+    padding: 70px 0;
     display: table;
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 600px;
     background: url(../img/description-bg.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -177,10 +177,15 @@ hr.small {
     -o-background-size: cover;
 }
 
+.custom-border {
+    border-left: 3px solid #f5c84c
+}
+
 /* Services */
 
 .services {
     padding: 50px 0;
+    background: #ffbb00;
 }
 
 .service-item {
@@ -192,8 +197,8 @@ hr.small {
 .callout {
     display: table;
     width: 100%;
-    height: 400px;
-    color: #fff;
+    height: 100%;
+    color: #000;
     background: url(../img/callout.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
