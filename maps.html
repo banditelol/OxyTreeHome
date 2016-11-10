@@ -21,12 +21,10 @@
 
                 <div class="col-lg-8 col-lg-offset-2">
 
-                    <h1>Google maps & Bootstrap tutorial from <a href="http://bootstrapious.com">Bootstrapious.com</a></h1>
+                    <h1>OxyTree Map</h1>
 
-                    <p class="lead">This is a demo for our tutorial showing you how to add a custom styled Google maps into a Bootstrap page.</p>
+                    <p class="lead">This is a demo of our monitoring system for OxyTree placed on the street, you can see the status of each oxytree in real-time. Click on any marker to show the status of each OxyTree (in this case only one live data is provided)</p>
 
-                    <p><strong>Pellentesque habitant morbi tristique</strong>  amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-                    
                 </div>
 
             </div> 
@@ -118,7 +116,7 @@
               //   p = Math.round((p / max_gauge_value) * 100);
               //   displayData(p);
               // }
-              var contentString = '<div id="content">'+'<div id="siteNotice">' +'<table style=" ">'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+ String(pco2)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ String(pco)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(ptemp)+'</td>'+'</tr>'+'<tr>'+'<td>'+'pH   '+'</td>'+'<td>'+ String(pph)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
+              var contentString = '<div id="content">'+'<div id="siteNotice">' + '<h2>'+' OxyTree-ITB01' +'</h2>'+'<table style=" ">'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+ String(pco2)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ String(pco)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(ptemp)+'</td>'+'</tr>'+'<tr>'+'<td>'+'pH   '+'</td>'+'<td>'+ String(pph)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
               infowindow.setContent(contentString);
             });
           }
