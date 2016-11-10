@@ -215,10 +215,12 @@ hr.small {
 
 .portofolio-subheader {
     background: #00d3ba;
+    color: white;
 }
 
 .portofolio-header {
     background: #ffbb00;
+    color: white;
 }
 
 .portfolio-item {
