@@ -6,8 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link href="css/stylish-portfolio.css" rel="stylesheet">
-
         <style type="text/css" media="screen">
           #map{
             width: 100%;
@@ -15,24 +13,20 @@
           }
         </style>
     </head>
-    <body class="portofolio-subheader">
+    <body>
 
         <div class="container">
 
-            <div class="row portofolio-subheader">
+            <div class="row">
+
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div class="text-center">
-                      <a href="http://banditelol.github.io/OxyTreeHome">
-                        <img class="img-portfolio img-responsive" src="img/logo-2-white.png">
-                      </a>  
-                    </div>
-                    <div class="row portofolio-header">
-                      <h1 class="text-center">OxyTree Map</h1>
-                    </div>
-                    
+
+                    <h1 class="text-center">OxyTreeMap</h1>
 
                     <p class="lead">This is a demo of our monitoring system for OxyTree placed on the street, you can see the status of each oxytree in real-time. Click on any marker to show the status of each OxyTree (in this case only one live data is provided)</p>
 
+                    <p>Click on the marker to show the data on the appointed place.</p>
+                    
                 </div>
 
             </div> 
@@ -44,12 +38,19 @@
         var infowindow
             function initMap() {
               var bandung = {lat: -6.891954, lng: 107.609887};
+              var bandung1 = {lat: -6.892764, lng: 107.610697};
+              var bandung2 = {lat: -6.894547, lng: 107.608972};
+              var bandung3 = {lat: -6.893659, lng: 107.606166};
+              var bandung4 = {lat: -6.892360, lng: 107.610281};
+              var bandung5 = {lat: -6.896268, lng: 107.605556};
+              var bandung6 = {lat: -6.890772, lng: 107.604366};
+              var bandung7 = {lat: -6.892870, lng: 107.612772};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
           center: bandung
         });
 
-        var contentString = '<div id="content">'+'<div id="siteNotice">'+'<div id="gauge_div">'+'<table style=" ">'+'<tr>'+'<td>'+'Temperature   '+ 'C ' +'</td>'+'<td>'+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
+        var contentString = '<div id="content">'+'<div id="siteNotice">'+'Loading...'+ '<br>' + '<i class="fa fa-spinner fa-spin fa-fw fa-3x">'+'</i>' +'</div>'+'</div>';
 
         infowindow = new google.maps.InfoWindow({
           content: contentString
@@ -60,12 +61,75 @@
           map: map,
           title : 'Institut Teknologi Bandung'
         });
+        var marker1 = new google.maps.Marker({
+          position: bandung1,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+        var marker2 = new google.maps.Marker({
+          position: bandung2,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+        var marker3 = new google.maps.Marker({
+          position: bandung3,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+        var marker4 = new google.maps.Marker({
+          position: bandung4,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+        var marker5 = new google.maps.Marker({
+          position: bandung5,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+        var marker6 = new google.maps.Marker({
+          position: bandung6,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
+        var marker7 = new google.maps.Marker({
+          position: bandung7,
+          map: map,
+          title : 'Institut Teknologi Bandung'
+        });
 
+        marker1.addListener('click', function(){
+          infowindow.open(map,marker1);
+          initChart();
+        });
+        marker2.addListener('click', function(){
+          infowindow.open(map,marker2);
+          initChart();
+        });
+        marker3.addListener('click', function(){
+          infowindow.open(map,marker3);
+          initChart();
+        });
+        marker4.addListener('click', function(){
+          infowindow.open(map,marker4);
+          initChart();
+        });
+        marker5.addListener('click', function(){
+          infowindow.open(map,marker5);
+          initChart();
+        });
+        marker6.addListener('click', function(){
+          infowindow.open(map,marker6);
+          initChart();
+        });
+        marker7.addListener('click', function(){
+          infowindow.open(map,marker7);
+          initChart();
+        });
         marker.addListener('click', function(){
           infowindow.open(map,marker);
           initChart();
-
         });
+
             }
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLFcEIoaS2K1rrLFItxkCNR0ElabGkkws&callback=initMap"></script>
@@ -124,7 +188,7 @@
               //   p = Math.round((p / max_gauge_value) * 100);
               //   displayData(p);
               // }
-              var contentString = '<div id="content">'+'<div id="siteNotice">' + '<h2>'+' OxyTree-ITB01' +'</h2>'+'<table style=" ">'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+ String(pco2)+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ String(pco)+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ String(ptemp)+'</td>'+'</tr>'+'<tr>'+'<td>'+'pH   '+'</td>'+'<td>'+ String(pph)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
+              var contentString = '<div id="content">'+'<div id="siteNotice">'+'<h3>'+'OxyTree-BDG01'+'</h3>' +'<table style=" ">'+'<tr>'+'<td>'+'CO2   '+'</td>'+'<td>'+'   '+ String(pco2)+' ppm'+'</td>'+'</tr>'+'<tr>'+'<td>'+'CO   '+'</td>'+'<td>'+ '   '+String(pco)+' ppm'+'</td>'+'</tr>'+'<tr>'+'<td>'+'Temperature   '+'</td>'+'<td>'+ '   '+String(ptemp)+' C'+'</td>'+'</tr>'+'<tr>'+'<td>'+'pH   '+'</td>'+'<td>'+ '   '+ String(pph)+'</td>'+'</tr>'+'</table>'+'</div>'+'</div>'+'</div>';
               infowindow.setContent(contentString);
             });
           }
