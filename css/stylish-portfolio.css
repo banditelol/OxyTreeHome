@@ -209,7 +209,16 @@ hr.small {
 /* Portfolio */
 
 .portfolio {
-    padding: 50px 0;
+    padding: 10px 0;
+    background: #f4f4f4;
+}
+
+.portofolio-subheader {
+    background: #00d3ba;
+}
+
+.portofolio-header {
+    background: #ffbb00;
 }
 
 .portfolio-item {
